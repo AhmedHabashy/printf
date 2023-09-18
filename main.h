@@ -11,11 +11,10 @@ int _printf(const char *format, ...);
 
 /* printing functions */
 int _putchar(char c);
-void _puts(char *str);
-void print_char(va_list *ptr);
-void print_string(va_list *ptr);
+int _puts(char *str);
+int print_char(va_list *ptr);
+int print_string(va_list *ptr);
 
 /* handlers */
-void print_handler(char format, va_list *ptr);
+int print_handler(char const *format, va_list *ptr);
 #endif
-

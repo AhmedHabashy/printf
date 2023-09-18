@@ -3,13 +3,15 @@
 * print_handler - maps a format to a certain function
 * @format: char to determine the format
 * @ptr: pointer to the list of variadic arguments
+* Return: sum of printed
 */
-void print_handler(char format, va_list *ptr)
+int print_handler(char const *format, va_list *ptr)
 {
-	if (format == '%')
-		_putchar('%');
-	else if (format == 'c')
-		print_char(ptr);
-	else if (format == 's')
-		print_string(ptr);
+	if (*format == '%')
+		return (_putchar('%'));
+	else if (*format == 'c')
+		return (print_char(ptr));
+	else if (*format == 's')
+		return (print_string(ptr));
+	return (0);
 }

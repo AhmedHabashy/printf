@@ -2,10 +2,13 @@
 /**
 * print_char - prints chars
 * @ptr: pointer to va_list
+* Return: printed sum
 */
-void print_char(va_list *ptr)
+int print_char(va_list *ptr)
 {
 	char value = va_arg(*ptr, int);
 
-	_putchar(value);
+	if (value == '\0')
+		return (0);
+	return (_putchar(value));
 }

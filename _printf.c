@@ -9,27 +9,30 @@ int _printf(const char *format, ...)
 {
 	int sum = 0;
 	va_list ptr;
+	char c;
 
 	va_start(ptr, format);
-	/* check if format is null or only has an empty space */
-	if (format[0] == '\0' || (format[0] == ' ' && format[1] == '\0'))
-		return (-1);
+	if (!format || format[0] == '\0')
+		return (0);
 	while (*format != '\0')
 	{
 		if (*format != '%')
 		{
-			_putchar(*format);
-			sum++;
+			sum += _putchar(*format);
 			format++;
 			continue;
 		}
-		/* if there is % go to the next char*/
+		if (*(format++) == ' ' || *(format++) == '\0')
+			return (0);
+		 c = *(format + 1);
+		if (*format == '%' && (c != 'c' || c != 's' || c != '%'))
+		{
+			sum += _putchar(*format);
+			format++;
+			continue;
+		}
 		format++;
-		/* check if format only has a % or has space/null after it*/
-		if (*format == ' ' || *format == '\0')
-			return (-1);
-		print_handler(*format, &ptr);
-		sum++;
+		sum += print_handler(format, &ptr);
 		format++;
 	}
 	va_end(ptr);
