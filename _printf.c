@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 
 	va_start(ptr, format);
 	/* check if format is null or only has an empty space */
-	if (format[0] == NULL || format[0] == ' ' && format[1] == NULL)
+	if (format[0] == '\0' || (format[0] == ' ' && format[1] == '\0'))
 		return (-1);
 	while (*format != '\0')
 	{
@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 		/* if there is % go to the next char*/
 		format++;
 		/* check if format only has a % or has space/null after it*/
-		if (*format == ' ' || *format == NULL)
+		if (*format == ' ' || *format == '\0')
 			return (-1);
 		print_handler(*format, &ptr);
 		sum++;
